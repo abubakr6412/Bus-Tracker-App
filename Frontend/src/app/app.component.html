@@ -1,0 +1,98 @@
+
+
+<h1>Welcome to Bus Route</h1>
+
+Route ID - <input id="RouteID" type="text" value=""  />
+
+Speed Limit - <input id="SpeedID" type="text" value=""  />
+<button (click)="onUpdate()" formtarget="_blank">Update</button>
+ <button (click)="onStart()" formtarget="_blank">Start</button>
+
+ <button (click)="onReport()" formtarget="_blank">Report</button>
+
+
+
+
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2r8xNcsF9z9x5pfh3CIwjLSGJYUhctdM"></script>
+
+
+ <div *ngIf="apiLoaded | async">
+  <google-map height="500px"
+  width="100%">
+
+  
+  <map-marker
+  #markerElem="mapMarker"
+  *ngFor="let marker of markers"
+  [position]="marker.position"
+  [label]="marker.label"
+  [options]="marker.options"
+  (mapClick)="showInfo(marker.label)" 
+  (mapMouseover)="showInfo(marker.label)" 
+
+
+
+
+>
+</map-marker>
+
+
+</google-map>
+</div>
+
+
+
+
+ <div class="container mt-5">
+  
+ 
+  
+  <table class="table table-striped">
+    <thead>
+        <tr>
+          <th>Bus</th>
+          <th>Destination</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+          <th>Distance</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bus of Buses">
+        <td>{{ bus.vid }}</td>
+        <td>{{ bus.des }}</td>
+        <td>{{ bus.lat }}</td>
+        <td>{{ bus.lon }}</td>
+        <td>{{ bus.pdist }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+<h1>Over Speeding Buses</h1>
+  <table class="table table-striped">
+    <thead>
+        <tr>
+          <th>Bus</th>
+          <th>Destination</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+          <th>Distance</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bus of OV_Buses">
+        <td>{{ bus.vid }}</td>
+        <td>{{ bus.des }}</td>
+        <td>{{ bus.lat }}</td>
+        <td>{{ bus.lon }}</td>
+        <td>{{ bus.pdist }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+
+
+
+</div>
